@@ -1,0 +1,36 @@
+services:
+  cassandra:
+    image: cassandra:latest
+    container_name: cassandra
+    environment:
+      - CASSANDRA_CLUSTER_NAME=Test Cluster
+      - CASSANDRA_DC=dc1
+      - CASSANDRA_RACK=rack1
+    ports:
+      - "9042:9042"
+      - "7000:7000"
+    volumes:
+      - cassandra-data:/var/lib/cassandra
+    networks:
+      - cassandra-net
+    restart: always
+
+  datastax-studio:
+    image: datastax/studio:latest
+    container_name: datastax-studio
+    environment:
+      - CASSANDRA_HOST=cassandra
+      - CASSANDRA_PORT=9042
+    ports:
+      - "8888:8888"
+    networks:
+      - cassandra-net
+    restart: always
+
+volumes:
+  cassandra-data:
+
+
+networks:
+  cassandra-net:
+    driver: bridge
