@@ -505,8 +505,13 @@ update_match_list()
 root.mainloop()
 
 # Para visualizar todas as tabelas no cqlsh (Docker), execute:
+# docker pull cassandra casso seja necessario baixar a imagen 
+# docker run --name cassandra-container -p 9042:9042 cassandra cria e ativa o container
+# docker start cassandra-container
+# docker exec -it cassandra-container bash entra no container cassandra
 # USE game_manager;
 # DESC TABLES;
+#
 #
 # Isso exibirá: tournaments, teams e game_matches.
 
